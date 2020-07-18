@@ -1,0 +1,11 @@
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY ./package.json ./
+RUN npm install
+
+COPY . .
+
+# dev is for activating nodemon, for automatic refresh for source code change
+CMD ["npm", "run", "dev"]
