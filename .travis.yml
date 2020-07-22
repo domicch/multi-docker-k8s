@@ -1,0 +1,24 @@
+# need root privilege for docker
+sudo: required
+language: generic
+services:
+    - docker
+
+before_install:
+    - docker build -t domicch/complex_react_demo_client_test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true domicch/complex_react_demo_client_test npm run test
+
+after_success:
+    - docker build -t domicch/complex_react_demo_client ./client
+    - docker build -t domicch/complex_react_demo_router ./router
+    - docker build -t domicch/complex_react_demo_server ./server
+    - docker build -t domicch/complex_react_demo_worker ./worker
+    # login and push built images to Docker Hub
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push domicch/complex_react_demo_client
+    - docker push domicch/complex_react_demo_router
+    - docker push domicch/complex_react_demo_server
+    - docker push domicch/complex_react_demo_worker
+

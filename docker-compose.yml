@@ -1,7 +1,8 @@
 version: '3'
 services:
     postgres:
-        image: postgres:latest
+        # node 14 does not work with latest postgres (will hang when connect). Should use node 12
+        image: postgres:12-alpine
         environment:
             - POSTGRES_PASSWORD=postgres_password
         ports:
@@ -10,13 +11,13 @@ services:
         image: redis:latest
         ports:
             - '6379:6379'
-    # router:
-    #     restart: always
-    #     build:
-    #         dockerfile: Dockerfile.dev
-    #         context: ./router
-    #     ports:
-    #         - '3050:80'
+    router:
+        restart: always
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./router
+        ports:
+            - '3050:80'
     api:
         build:
             context: ./server
@@ -36,18 +37,18 @@ services:
             - postgres
         ports:
             - '5000:5000'
-    # client:
-    #     # indicates service is built from Dockerfile from current directory
-    #     build:
-    #         context: ./client
-    #         dockerfile: Dockerfile.dev 
-    #     #ports: 
-    #     #    - '3000:3000'
-    #     volumes:
-    #         - /app/node_modules
-    #         - ./client:/app
-    #     # fix create-react-app bug terminate immediately with docker-compose
-    #     stdin_open: true
+    client:
+        # indicates service is built from Dockerfile from current directory
+        build:
+            context: ./client
+            dockerfile: Dockerfile.dev 
+        #ports: 
+        #    - '3000:3000'
+        volumes:
+            - /app/node_modules
+            - ./client:/app
+        # fix create-react-app bug terminate immediately with docker-compose
+        stdin_open: true
     worker:
         # indicates service is built from Dockerfile from current directory
         build:
