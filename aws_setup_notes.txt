@@ -1,0 +1,20 @@
+# Development and testing on local machine
+1. Do all the coding for all services
+2. Make sure all services are buildable to Docker images locally
+3. Use Docker-compose to run all the services and make sure they can communicate locally
+
+# Setup Travis pipeline
+1. Create project on Travis
+2. Create .travis.yml locally
+3. Push all codes to GitHub to trigger Travis build
+
+# Setup AWS
+1. Create Elastic Beanstalk (EBS) which hosts nginx, client, server and worker containers
+2. Create RDS service (postgres)
+3. Create Elascache service (redis)
+4. Create security group and assign security group to EBS, RDS and redis services. 
+The main purpose is to allow EBS access to RDS and redis
+5. All services should reside in the same virtual private cloud (VPC)
+6. Create IAM user for the project with deployer right
+7. Generate IAM keys of user for travis build
+8. Create environment variables in DBS Configuration --> software. Env variables are automatically injected into all containers

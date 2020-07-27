@@ -1,0 +1,37 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions":[
+        {
+            "name": "client",
+            "image": "domicch/complex_react_demo_client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "domicch/complex_react_demo_server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "domicch/complex_react_demo_worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "router",
+            "image": "domicch/complex_react_demo_router",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "client","server"
+            ]
+        }
+    ]
+}

@@ -22,3 +22,17 @@ after_success:
     - docker push domicch/complex_react_demo_server
     - docker push domicch/complex_react_demo_worker
 
+deploy:
+    provider: elasticbeanstalk
+    region: "eu-west-2"
+    app: "complex_react_demo"
+    env: "ComplexReactDemo-env"
+    # elastic beanstalk use S3 to store all required source code
+    bucket_name: "elasticbeanstalk-eu-west-2-083257362144"
+    bucket_path: "complex_react_demo"
+    # only deploy when master branch has update
+    on:
+        branch: master    
+    # Environment variables are defined in Travis
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
