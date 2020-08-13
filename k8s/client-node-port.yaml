@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: client-node-port
+spec:
+    # NodePort is used for dev purpose only. Don't use in production
+    type: NodePort
+    ports:
+        # for access by other service
+        - port: 3050
+        targetPort: 3000
+        # for access from host machine directly (e.g. browser)
+        nodePort: 31515
+    selector:
+        component: web
