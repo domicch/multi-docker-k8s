@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: client-deployment
+spec:
+    # number of identical pods to be created
+    replicas: 3
+    selector:
+        matchLabels:
+            component: web
+    template:
+        metadata:
+            labels:
+                component: web
+        spec:
+            containers:
+                - name: client
+                  image: domicch/complex_react_demo_client
+                  ports:
+                    - containerPort: 3000

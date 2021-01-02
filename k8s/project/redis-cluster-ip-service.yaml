@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: redis-cluster-ip-service
+spec:
+    # NodePort is used for dev purpose only. Don't use in production
+    type: ClusterIP
+    selector:
+        component: redis
+    ports:
+        - port: 6379
+          targetPort: 6379
+        
