@@ -15,7 +15,7 @@ spec:
         spec:
             containers:
                 - name: worker
-                  image: domicch/complex_react_demo_worker
+                  image: domicch/multi_docker_k8s_worker
                   env:
                     - name: REDIS_HOST
                       value: redis-cluster-ip-service

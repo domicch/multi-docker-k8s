@@ -1,0 +1,16 @@
+# Prepare docker images
+1. Get all the docker images scripts ready and make sure they can be built and run locally
+
+# Prepare GitHub, Docker Hub accounts
+
+# Prepare Google Cloud Environment
+1. Create Google Cloud account
+2. Create K8S cluster in Google Cloud in GCP console
+3. Create Service account in GCP for travis access (generate the .json file for travis use. Refer to .travis.yml for details)
+4. Create postgres secret in GCP (refer to gcp_secret/1_create_secret.sh)
+5. Install Helm in GCP via cloud console (refer to gcp_secret/2_install_helm.sh)
+6. Install Ingress in GCP via cloud console (refer to gcp_secret/3_install_ingress.sh)
+
+# Prepare Travis
+1. Link Travis with GitHub
+2. Prepare .travis.yml file

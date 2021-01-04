@@ -15,6 +15,6 @@ spec:
         spec:
             containers:
                 - name: client
-                  image: domicch/complex_react_demo_client
+                  image: domicch/multi_docker_k8s_client
                   ports:
                     - containerPort: 3000

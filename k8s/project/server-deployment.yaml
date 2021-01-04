@@ -15,7 +15,7 @@ spec:
         spec:
             containers:
                 - name: server
-                  image: domicch/complex_react_demo_server
+                  image: domicch/multi_docker_k8s_server
                   ports:
                     - containerPort: 5000
                   env:

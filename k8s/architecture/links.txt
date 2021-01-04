@@ -1,0 +1,2 @@
+https://app.diagrams.net/?mode=github#HStephenGrider%2FDockerCasts%2Fmaster%2Fdiagrams%2F16%2Fdiagrams.xml
+https://app.diagrams.net/?mode=github#HStephenGrider%2FDockerCasts%2Fmaster%2Fdiagrams%2F17%2Fdiagrams.xml
