@@ -17,6 +17,7 @@ docker push domicch/multi_docker_k8s_worker:$SHA
 
 # k8s stuff
 kubectl apply -f k8s/project
+kubectl apply -f k8s/ingress-nginx/ingress_service.yaml
 # in order for k8s to "detect" latest built image, we tag the image with version identical to Git commit hash value
 # So every time image is updated, kubectl will explicitly get latest image to deploy
 kubectl set image deployment/server-deployment server=domicch/multi_docker_k8s_server:$SHA
