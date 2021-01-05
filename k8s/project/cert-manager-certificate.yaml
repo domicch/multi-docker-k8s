@@ -12,10 +12,10 @@ spec:
     - dominicchan.page
     - www.dominicchan.page
   # For cert verification process
-  acme:
-    config:
-      - http01:
-          ingressClass: nginx
-        domains:
-          - dominicchan.page
-          - www.dominicchan.page
+  # acme:
+  #   config:
+  #     - http01:
+  #         ingressClass: nginx
+  #       domains:
+  #         - dominicchan.page
+  #         - www.dominicchan.page

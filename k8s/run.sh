@@ -14,3 +14,6 @@ kubectl get deployments
 
 # update image
 kubectl set image deployment/client-deployment client=domicch/complex_react_demo_client:v1
+
+# get logs
+kubectl logs --selector=component=web --tail 1

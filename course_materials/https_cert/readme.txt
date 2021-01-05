@@ -14,7 +14,7 @@ helm install \
 cert-manager jetstack/cert-manager \
 --namespace cert-manager \
 --version v1.1.0 \
-# --set installCRDs=true
+--set installCRDs=true
 
 Step 3:
 Create the configuration files of cert-manager according to domain acquired. 
@@ -23,3 +23,5 @@ Refer to k8s/project/cert-manager-issuer.yaml and cert-manager-certificate.yaml
 Step 4:
 Apply the yaml files to k8s cluster first to let the certificate verification done first
 
+Step 5:
+Re-configure nginx-ingress to use the cert. Please refer to k8s/project/ingress_service.yaml
