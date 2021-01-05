@@ -1,0 +1,34 @@
+apiVersion: skaffold/v1beta2
+kind: Config
+build:
+  local:
+    # Don't push image after build
+    push: false
+  artifacts:
+    - image: domicch/multi_docker_k8s_client
+      # directory of source files to monitor
+      context: client
+      docker:
+        dockerfile: Dockerfile.dev
+      # these files types are monitored for live reload
+      sync:
+        '**/*.js': .
+        '**/*.css': .
+        '**/*.html': .
+    - image: domicch/multi_docker_k8s_server
+      # directory of source files to monitor
+      context: server
+      docker:
+        dockerfile: Dockerfile.dev
+      # these files types are monitored for live reload
+      sync:
+        '**/*.js': .
+deploy:
+  kubectl:
+    # This is how it works:
+    # Every time "skaffold dev" is run, the yaml config is applied (and it is deleted when skaffold quits)
+    # The docker image is rebuilt based on "build" section
+    # For every change in sync list, the file is pushed into the pod for changes to be effective immediately
+    manifests:
+      - k8s/project/client-deployment.yaml
+      - k8s/project/server-deployment.yaml

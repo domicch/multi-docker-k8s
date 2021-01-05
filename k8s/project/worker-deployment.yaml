@@ -4,7 +4,7 @@ metadata:
     name: worker-deployment
 spec:
     # number of identical pods to be created
-    replicas: 1
+    replicas: 2
     selector:
         matchLabels:
             component: worker

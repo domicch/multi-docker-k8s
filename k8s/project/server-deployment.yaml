@@ -4,7 +4,7 @@ metadata:
     name: server-deployment
 spec:
     # number of identical pods to be created
-    replicas: 3
+    replicas: 1
     selector:
         matchLabels:
             component: server

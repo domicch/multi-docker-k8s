@@ -24,15 +24,16 @@ before_install:
   - gcloud container clusters get-credentials multi-docker-cluster
   # login to Docker Hub CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  # run all the tests for the docker images
-  - docker build -t domicch/multi_docker_k8s_client_test -f ./client/Dockerfile.dev ./client
+  # run all the tests for the docker images. Skip it for faster build first
+  #- docker build -t domicch/multi_docker_k8s_client_test -f ./client/Dockerfile.dev ./client
   # a kind reminder to create secret for PGPASSPORD in GCP in order for postgres to work. Please refer to gcp_secret/create_secret.sh
 
-script:
-  - docker run -e CI=true domicch/multi_docker_k8s_client_test npm run test
+# Skip tests for faster build
+#script:
+#  - docker run -e CI=true domicch/multi_docker_k8s_client_test npm run test
 
 deploy:
   provider: script
-  script: bash ./deploy.sh
+  script: bash ./deploy_prd.sh
   on:
     branch: master
