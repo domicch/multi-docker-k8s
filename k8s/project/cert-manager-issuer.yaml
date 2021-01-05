@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: 'domicch@gmail.com'
+    # this holds the secret string sent from LetsEncrypt for domain verification
+    # for details refer to https://cert-manager.io/docs/reference/api-docs/#acme.cert-manager.io/v1alpha2.ACMEIssuer 
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
